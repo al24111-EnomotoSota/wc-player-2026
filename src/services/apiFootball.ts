@@ -8,7 +8,9 @@
 import { ExternalApiError, fetchJson } from './http'
 
 const WORLD_CUP_LEAGUE_ID = 1
-const DEFAULT_SEASON = 2026
+// 取得シーズン。API-Football の無料プランは 2022〜2024 のみ対応のため既定を 2022（カタールW杯）とする。
+// 有料プランで 2026 等にアクセスする場合は環境変数 API_FOOTBALL_SEASON で上書き。
+const DEFAULT_SEASON = Number(process.env.API_FOOTBALL_SEASON) || 2022
 
 // --- API-Football の生レスポンス型（必要分のみ） ---
 
