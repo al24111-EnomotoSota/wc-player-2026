@@ -13,8 +13,15 @@ const nextConfig: NextConfig = {
   // Turbopack を明示的に有効化（空オブジェクトで衝突警告を抑制）
   turbopack: {},
   images: {
+    // 最新フォーマットで配信（AVIF 優先 → WebP フォールバック）
+    formats: ["image/avif", "image/webp"],
+    // 最適化済み画像のキャッシュ保持（外部画像の再取得を抑制）
+    minimumCacheTTL: 60 * 60 * 24 * 7, // 7 日
     remotePatterns: [
       { protocol: "https", hostname: "upload.wikimedia.org" },
+      { protocol: "https", hostname: "commons.wikimedia.org" },
+      { protocol: "https", hostname: "media.api-sports.io" },
+      { protocol: "https", hostname: "flagcdn.com" },
       { protocol: "https", hostname: "**.supabase.co" },
     ],
   },
